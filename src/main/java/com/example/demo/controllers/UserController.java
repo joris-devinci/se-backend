@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.models.dtos.UserRequest;
 import com.example.demo.models.dtos.UserResponse;
 import com.example.demo.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -32,29 +33,29 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAll() {
         List<UserResponse> users = userService.findAll();
-        return ResponseEntity.status(200).body(users);
+        return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getById(@PathVariable long id) {
         UserResponse response = userService.getById(id);
-        return ResponseEntity.status(200).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PostMapping
     public ResponseEntity<UserResponse> add(@RequestBody UserRequest user) {
         UserResponse response = new UserResponse();
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> update(@PathVariable long id, @RequestBody UserRequest user) {
         UserResponse response = new UserResponse();
-        return ResponseEntity.status(200).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
