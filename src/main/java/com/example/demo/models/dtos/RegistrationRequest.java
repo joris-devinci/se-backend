@@ -9,5 +9,6 @@ public record RegistrationRequest(
     @NotBlank @Email String email,
     @NotBlank @Size(max=20) String postcode,
     @NotBlank @Size(max=20) String house_number,
-    @NotNull @Size(min=8, max=128) String password
+    @NotNull @Size(min=8, max=128) String password,
+    @NotNull boolean admin
 ) {}

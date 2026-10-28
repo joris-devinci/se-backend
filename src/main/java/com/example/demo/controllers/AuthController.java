@@ -35,6 +35,7 @@ public class AuthController {
         user.setName(user.getFirstName()+" "+user.getLastName());
         user.setEmail(email); user.setPostcode(data.postcode().trim());
         user.setHouseNumber(data.house_number().trim()); user.setPassword(passwords.hash(data.password()));
+        user.setAdmin(data.admin());
         users.saveAndFlush(user);
         // Existing cart endpoints expect every user to have a cart.
         Cart cart=new Cart(); cart.setUser(user); cart.setCartItems(new ArrayList<>());

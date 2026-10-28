@@ -33,6 +33,7 @@ public class User {
     private String lastName;
     private String postcode;
     private String houseNumber;
+    private boolean admin;
 
     @OneToOne 
     private Cart cart;
