@@ -22,9 +22,17 @@ public class User {
 
     private String name;
     
+    @jakarta.persistence.Column(unique = true)
     private String email;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    @lombok.ToString.Exclude
     private String password;
+
+    private String firstName;
+    private String lastName;
+    private String postcode;
+    private String houseNumber;
 
     @OneToOne 
     private Cart cart;

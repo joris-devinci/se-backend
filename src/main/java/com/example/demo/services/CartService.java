@@ -67,6 +67,10 @@ public class CartService {
     public CartResponse increaseCartItem(long userId, long cartItemId) {
         
         CartItem cartItem = cartItemRepository.getReferenceById(cartItemId);
+        // Also check item ownership, not just the user ID in the URL.
+        if (!cartItem.getCart().getUser().getId().equals(userId)) {
+            throw new com.example.demo.exceptions.ForbiddenException("Access denied.");
+        }
         cartItem.setAmount(cartItem.getAmount() + 1);
         cartItemRepository.save(cartItem);
         
@@ -78,6 +82,10 @@ public class CartService {
     public CartResponse decreaseCartItem(long userId, long cartItemId) {
         
         CartItem cartItem = cartItemRepository.getReferenceById(cartItemId);
+        // Also check item ownership, not just the user ID in the URL.
+        if (!cartItem.getCart().getUser().getId().equals(userId)) {
+            throw new com.example.demo.exceptions.ForbiddenException("Access denied.");
+        }
         if (cartItem.getAmount() <= 1) {
             throw new ConflictException(
                 "Can't decrease this item because its already on one\n" +
