@@ -24,6 +24,7 @@ public class ShoeDataInitializer {
                 shoe1.setName("Nike Air Max");
                 shoe1.setPrice(129.99f);
                 shoe1.setStock(10);
+                shoe1.setImageUrl("nothing");
                 shoe1.setBrand(Brand.NIKE);
                 shoe1.setColors(List.of(Color.BLACK));
 
@@ -31,6 +32,7 @@ public class ShoeDataInitializer {
                 shoe2.setName("Adidas Samba");
                 shoe2.setPrice(99.99f);
                 shoe2.setStock(15);
+                shoe2.setImageUrl("nothing");
                 shoe2.setBrand(Brand.ADIDAS);
                 shoe2.setColors(List.of(Color.WHITE));
 
@@ -38,6 +40,7 @@ public class ShoeDataInitializer {
                 shoe3.setName("Puma Suede");
                 shoe3.setPrice(89.99f);
                 shoe3.setStock(8);
+                shoe3.setImageUrl("nothing");
                 shoe3.setBrand(Brand.PUMA);
                 shoe3.setColors(List.of(Color.GREEN));
 

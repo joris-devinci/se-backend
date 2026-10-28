@@ -34,6 +34,8 @@ public class Shoe {
 
     private int stock;
 
+    private String imageUrl;
+
     @Enumerated(EnumType.STRING)
     private Brand brand;
 
