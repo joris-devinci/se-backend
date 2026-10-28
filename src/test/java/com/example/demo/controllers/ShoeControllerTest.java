@@ -1,8 +1,11 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Shoe;
+import com.example.demo.models.dtos.ShoeRequest;
+import com.example.demo.models.dtos.ShoeResponse;
 import com.example.demo.services.ShoeService;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -13,27 +16,76 @@ class ShoeControllerTest {
 
     @Test
     void shouldReturnAllShoes() {
-
-        // Create a mock service
         ShoeService shoeService = mock(ShoeService.class);
-
-        // Create controller with the mock service
         ShoeController controller = new ShoeController(shoeService);
-
-        // Define what the mock service should return
-        Shoe shoe = new Shoe();
+        ShoeResponse shoe = new ShoeResponse();
         shoe.setName("Nike Air Max");
-
         when(shoeService.getAllShoes()).thenReturn(List.of(shoe));
 
-        // Call the controller
-        List<Shoe> shoes = controller.getShoes();
+        var response = controller.getAllShoes();
 
-        // Verify the result
-        assertEquals(1, shoes.size());
-        assertEquals("Nike Air Max", shoes.get(0).getName());
-
-        // Verify that the service was called
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+        assertEquals("Nike Air Max", response.getBody().get(0).getName());
         verify(shoeService).getAllShoes();
+    }
+
+    @Test
+    void shouldCreateShoe() {
+        ShoeService shoeService = mock(ShoeService.class);
+        ShoeController controller = new ShoeController(shoeService);
+        ShoeRequest request = new ShoeRequest();
+        ShoeResponse shoe = new ShoeResponse();
+        shoe.setId(1L);
+        shoe.setName("Nike Air Max");
+        when(shoeService.createShoe(request)).thenReturn(shoe);
+
+        var response = controller.createShoe(request);
+
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(shoe, response.getBody());
+        verify(shoeService).createShoe(request);
+    }
+
+    @Test
+    void shouldGetShoeById() {
+        ShoeService shoeService = mock(ShoeService.class);
+        ShoeController controller = new ShoeController(shoeService);
+        ShoeResponse shoe = new ShoeResponse();
+        shoe.setId(1L);
+        when(shoeService.getShoeById(1L)).thenReturn(shoe);
+
+        var response = controller.getShoeById(1L);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(shoe, response.getBody());
+        verify(shoeService).getShoeById(1L);
+    }
+
+    @Test
+    void shouldUpdateShoe() {
+        ShoeService shoeService = mock(ShoeService.class);
+        ShoeController controller = new ShoeController(shoeService);
+        ShoeRequest request = new ShoeRequest();
+        ShoeResponse shoe = new ShoeResponse();
+        shoe.setId(1L);
+        when(shoeService.updateShoe(1L, request)).thenReturn(shoe);
+
+        var response = controller.updateShoe(1L, request);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(shoe, response.getBody());
+        verify(shoeService).updateShoe(1L, request);
+    }
+
+    @Test
+    void shouldDeleteShoe() {
+        ShoeService shoeService = mock(ShoeService.class);
+        ShoeController controller = new ShoeController(shoeService);
+
+        var response = controller.deleteShoe(1L);
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        verify(shoeService).deleteShoe(1L);
     }
 }
