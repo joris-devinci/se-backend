@@ -40,6 +40,4 @@ public class Shoe {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private List<Color> colors;
-
-    private String category;
 }

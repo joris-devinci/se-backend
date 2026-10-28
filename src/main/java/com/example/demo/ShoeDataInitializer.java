@@ -26,7 +26,6 @@ public class ShoeDataInitializer {
                 shoe1.setStock(10);
                 shoe1.setBrand(Brand.NIKE);
                 shoe1.setColors(List.of(Color.BLACK));
-                shoe1.setCategory("Sneakers");
 
                 Shoe shoe2 = new Shoe();
                 shoe2.setName("Adidas Samba");
@@ -34,7 +33,6 @@ public class ShoeDataInitializer {
                 shoe2.setStock(15);
                 shoe2.setBrand(Brand.ADIDAS);
                 shoe2.setColors(List.of(Color.WHITE));
-                shoe2.setCategory("Casual");
 
                 Shoe shoe3 = new Shoe();
                 shoe3.setName("Puma Suede");
@@ -42,7 +40,6 @@ public class ShoeDataInitializer {
                 shoe3.setStock(8);
                 shoe3.setBrand(Brand.PUMA);
                 shoe3.setColors(List.of(Color.GREEN));
-                shoe3.setCategory("Lifestyle");
 
                 repository.saveAll(List.of(shoe1, shoe2, shoe3));
             }
