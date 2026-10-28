@@ -34,4 +34,4 @@ build/
 
 
 ### Project ###
-data/*
+# data/*
